@@ -4,50 +4,49 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byValue;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.files.DownloadActions.click;
 
 public class PracticeFormTest {
 
     @Test
     void dataAppearsInOutBlockText() {
+        //Открытие и проверка сайта
         open("https://demoqa.com/automation-practice-form");
         $(".main-header").shouldHave(text("Practice Form"));
+        //Ввод имени и фамилии
         $("#firstName").setValue("Nikolay");
         $("#lastName").setValue("Pribolovets");
+        //Ввод почты
         $("#userEmail").setValue("fake@mail.com");
+        //Выбор пола
         $("#gender-radio-1").doubleClick();
+        //Ввод номера телефона
         $("#userNumber").setValue("333013666");
-        //Выбрать дату из календаря
+        //Выбор даты рождения
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").click();
         $(byText("December")).click();
         $(".react-datepicker__year-select").click();
         $(byText("1989")).click();
-
-        //$$(byText("30")).get(1).click();
         $(".react-datepicker__month").$$(byText("30")).get(1).click();
+        //Выбор предметов
+        $("#subjectsInput").setValue("Mat");
+        $("#subjectsInput").pressEnter();
+        $("#subjectsInput").setValue("Phy");
+        $("#subjectsInput").pressEnter();
+
+        //Выбор хобби
         $("#hobbiesWrapper").find(byText("Sports")).click();
         $("#hobbiesWrapper").find(byText("Music")).click();
-        sleep(10000);
-
-
-
-        //$("#subjectsContainer").setValue("Просто текс сабжа");
-        //$("#hobbies-checkbox-1").click();
-        //$("#hobbies-checkbox-3").click();
 
         //Прикрепить файл
-        //uploadPicture
+        $("#uploadPicture").setValue("C:\\Users\\nikol\\Pictures\\Saved Pictures\\Cat.jfif");
+
         //Ввести адресс
-        //currentAddress
         //Выбрать штат из дроп-дауна
-        //state
         //Выбрать город из дроп-дауна
-        //city
         //Отправить инфу
-        //submit
         //Проверить правильность отображения данных
+        sleep(10000);
     }
 }
