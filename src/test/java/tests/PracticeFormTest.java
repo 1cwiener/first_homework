@@ -21,7 +21,7 @@ public class PracticeFormTest {
         //Выбор пола
         $("#gender-radio-1").doubleClick();
         //Ввод номера телефона
-        $("#userNumber").setValue("333013666");
+        $("#userNumber").setValue("0333013666");
         //Выбор даты рождения
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").click();
@@ -34,19 +34,28 @@ public class PracticeFormTest {
         $("#subjectsInput").pressEnter();
         $("#subjectsInput").setValue("Phy");
         $("#subjectsInput").pressEnter();
-
         //Выбор хобби
         $("#hobbiesWrapper").find(byText("Sports")).click();
         $("#hobbiesWrapper").find(byText("Music")).click();
-
+        //Закрыть рекламу
+        $("#close-fixedban").click();
+        //Проскролить страницу
+        $("#submit").hover();
         //Прикрепить файл
         $("#uploadPicture").setValue("C:\\Users\\nikol\\Pictures\\Saved Pictures\\Cat.jfif");
-
         //Ввести адресс
+        $("#currentAddress").setValue("Minsk, Belarus");
         //Выбрать штат из дроп-дауна
+        $("#state").click();
+        $("#state").$(byText("NCR")).click();
         //Выбрать город из дроп-дауна
+        $("#city").click();
+        $("#city").$(byText("Noida")).click();
         //Отправить инфу
+        $("#submit").click();
         //Проверить правильность отображения данных
-        sleep(10000);
+        $(".table-responsive").shouldHave(text("Nikolay"), text("Pribolovets"),
+                text("fake@mail.com"), text("Male"), text("0333013666"), text("30 December,1989"), text("Maths, Physics"),
+                text("Cat.jfif"), text("Minsk, Belarus"), text("NCR Noida"), text("Sports, Music"));
     }
 }
